@@ -46,7 +46,7 @@ export const getFeedPosts = async (req, res) => {
 // Get user's post
 export const getUserPosts = async (req, res) => {
     try{
-        const {userId} = req.param;
+        const {userId} = req.params;
         const post = await Post.find({ userId });
         res.status(200).json(post);
     }catch (err) {
@@ -58,7 +58,7 @@ export const getUserPosts = async (req, res) => {
 /* UPDATE */
 export const likePost = async (req, res) => {
     try{
-        const {id} = req.param;
+        const {id} = req.params;
         const { userId } = req.body;
         const post = await Post.findById(id); //Get post info
         const isLiked = post.likes.get(userId);
@@ -82,3 +82,4 @@ export const likePost = async (req, res) => {
         res.status(404).json({ error: err.message })
     }
 }
+
